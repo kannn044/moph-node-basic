@@ -48,8 +48,7 @@ router.post('/auth', (req, res, next) => __awaiter(this, void 0, void 0, functio
     let username = req.body.username;
     let password = req.body.password;
     if (username && password) {
-        let encPassword = crypto.createHash('md5').update(password).digest('hex');
-        let rs = yield userModel.doLogin(req.db, username, encPassword);
+        let rs = yield userModel.doLogin(req.db, username, password);
         if (rs.length) {
             let fullname = rs[0].fullname;
             let user_id = rs[0].user_id;

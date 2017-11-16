@@ -58,11 +58,11 @@ router.post('/add', async (req, res, next) => {
   let userTypeId = req.body.userType;
 
   if (username && password && firstName && lastName) {
-    let encPassword = crypto.createHash('md5').update(password).digest('hex');
+    // let encPassword = crypto.createHash('md5').update(password).digest('hex');
 
     let user = {
       username: username,
-      password: encPassword,
+      password: password,
       first_name: firstName,
       last_name: lastName,
       is_active: isActive,

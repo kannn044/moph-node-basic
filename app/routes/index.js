@@ -50,10 +50,9 @@ router.post('/add', (req, res, next) => __awaiter(this, void 0, void 0, function
     let isActive = req.body.isActive ? 'Y' : 'N';
     let userTypeId = req.body.userType;
     if (username && password && firstName && lastName) {
-        let encPassword = crypto.createHash('md5').update(password).digest('hex');
         let user = {
             username: username,
-            password: encPassword,
+            password: password,
             first_name: firstName,
             last_name: lastName,
             is_active: isActive,

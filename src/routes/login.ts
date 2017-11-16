@@ -51,8 +51,8 @@ router.post('/auth', async (req, res, next) => {
   let password = req.body.password;
 
   if (username && password) {
-    let encPassword = crypto.createHash('md5').update(password).digest('hex');
-    let rs = await userModel.doLogin(req.db, username, encPassword);
+    // let encPassword = crypto.createHash('md5').update(password).digest('hex');
+    let rs = await userModel.doLogin(req.db, username, password);
 
     if (rs.length) {
       let fullname = rs[0].fullname;
