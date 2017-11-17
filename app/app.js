@@ -28,10 +28,11 @@ io.on('connection', (socket) => {
     socket.on('welcome', (data) => {
         io.emit();
         console.log(data);
+        io.emit('welcome-callback', 'Testttttttt');
     });
     socket.on('adduser', (data) => {
         console.log('Add user!');
-        io.emit('added-user', 'Server response : ' + data);
+        io.emit('added-user', 'Server response: ' + data);
     });
 });
 app.set('views', path.join(__dirname, 'views'));

@@ -103,6 +103,8 @@ router.post('/users', async (req, res, next) => {
     }
 
     req.io.emit('added-user', firstName);
+    req.io.emit('change-graph');
+    
     await userModel.saveUser(req.db, user);
     res.send({ok: true});
 
@@ -148,6 +150,8 @@ router.put('/users/:userId', async (req, res, next) => {
 router.delete('/users/:userId', async (req, res, next) => {
   try {
     let userId = req.params.userId;
+    req.io.emit('removed-user');
+    req.io.emit('change-graph');
     await userModel.removeUser(req.db, userId);
     res.send({ok: true})
   } catch (error) {

@@ -96,6 +96,7 @@ router.post('/users', (req, res, next) => __awaiter(this, void 0, void 0, functi
             user_type_id: userTypeId
         };
         req.io.emit('added-user', firstName);
+        req.io.emit('change-graph');
         yield userModel.saveUser(req.db, user);
         res.send({ ok: true });
     }
@@ -131,6 +132,8 @@ router.put('/users/:userId', (req, res, next) => __awaiter(this, void 0, void 0,
 router.delete('/users/:userId', (req, res, next) => __awaiter(this, void 0, void 0, function* () {
     try {
         let userId = req.params.userId;
+        req.io.emit('removed-user');
+        req.io.emit('change-graph');
         yield userModel.removeUser(req.db, userId);
         res.send({ ok: true });
     }
