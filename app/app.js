@@ -14,8 +14,26 @@ const index_1 = require("./routes/index");
 const login_1 = require("./routes/login");
 const api_1 = require("./routes/api");
 const session = require('express-session');
+const socketIo = require('socket.io');
+const io = socketIo();
 const Knex = require("knex");
 const app = express();
+app.io = io;
+app.use((req, res, next) => {
+    req.io = io;
+    next();
+});
+io.on('connection', (socket) => {
+    console.log('User connected!');
+    socket.on('welcome', (data) => {
+        io.emit();
+        console.log(data);
+    });
+    socket.on('adduser', (data) => {
+        console.log('Add user!');
+        io.emit('added-user', 'Server response : ' + data);
+    });
+});
 app.set('views', path.join(__dirname, 'views'));
 app.engine('.html', ejs.renderFile);
 app.set('view engine', 'html');

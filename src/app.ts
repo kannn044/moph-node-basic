@@ -41,13 +41,14 @@ io.on('connection', (socket: any) => {
 
   socket.on('welcome', (data: any) => {
     // response
+    io.emit()
     console.log(data);
   });
 
-  socket.on('adduser', () => {
+  socket.on('adduser', (data) => {
     console.log('Add user!')
     // response
-    io.emit('added-user', 'xxxxxx');
+    io.emit('added-user', 'Server response : ' + data);
   });
 
 });

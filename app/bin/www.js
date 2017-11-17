@@ -5,6 +5,8 @@ const http = require("http");
 const port = normalizePort(process.env.PORT || 3000);
 app_1.default.set('port', port);
 var server = http.createServer(app_1.default);
+var io = app_1.default.io;
+io.attach(server);
 server.listen(port, onListening);
 server.on('error', onError);
 function normalizePort(val) {

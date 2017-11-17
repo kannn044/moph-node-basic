@@ -38,6 +38,19 @@ class UserModel {
             .where('user_id', userId)
             .update(user);
     }
+    updateLatLng(db, userId, lat, lng) {
+        return db('users')
+            .where('user_id', userId)
+            .update({
+            lat: lat,
+            lng: lng
+        });
+    }
+    getLatLng(db, userId) {
+        return db('users')
+            .select('lat', 'lng')
+            .where('user_id', userId);
+    }
     getDetail(db, userId) {
         return db('users')
             .select('user_id', 'username', 'first_name', 'last_name', 'user_type_id', 'is_active')
